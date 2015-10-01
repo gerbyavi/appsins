@@ -1,3 +1,14 @@
-<html>
-    <title>ASINS</title>
-</html>
+<body>
+    <h1>ASINS</h1>
+    <form method="POST">  note - must use form
+    <!--note - must use form-->
+        <input name="item_text" id="id_new_item" placeholder="Enter an ASIN" />
+        {% csrf_token %}
+    <!-- note - the post request approved by the site-->
+    </form>
+
+    <table id="id_list_table">
+        <tr><td>{{ new_item_text }}</td></tr>
+    <!--variable to be rendered by render_to_string func -->
+    </table>
+</body>
