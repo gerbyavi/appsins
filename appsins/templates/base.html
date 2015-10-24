@@ -7,9 +7,6 @@
         {% csrf_token %}
     <!-- note - the post request approved by the site-->
     </form>
-
-    <table id="id_list_table">
-        <tr><td>{{ new_item_text }}</td></tr>
-    <!--variable to be rendered by render_to_string func -->
-    </table>
+    {% block css %}
+    {% endblock %}
 </body>
