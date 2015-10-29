@@ -1,8 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from django.test import LiveServerTestCase
 import unittest
 
-class NewVisitorTest(unittest.TestCase):  #1
+class NewVisitorTest(LiveServerTestCase):  #1
 
     def setUp(self):  #2
         self.browser = webdriver.Firefox()
@@ -11,7 +12,8 @@ class NewVisitorTest(unittest.TestCase):  #1
         self.browser.quit()
 
     def test_post_request(self):
-        self.browser.get('http://localhost:8000')
+#        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('B005XUNG5I')
         inputbox.send_keys(Keys.ENTER) # DF2 import Keys from selenium.webdriver.common.keys import Keys
@@ -25,11 +27,11 @@ class NewVisitorTest(unittest.TestCase):  #1
     def test_r_u_invited(self):  #4
         # Gerby goes to his site
         # to check out its homepage
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         # She notices the page title and header mention to-do lists
         self.assertIn('ASINS', self.browser.title)  #5
         self.fail('Finish the test!')  #6
 
-if __name__ == '__main__':  #7
-    unittest.main(warnings='ignore')  #
+#if __name__ == '__main__':  #7
+#    unittest.main(warnings='ignore')  #
