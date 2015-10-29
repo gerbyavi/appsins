@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from decimal import *
 
 # Create your views here.
 
@@ -20,6 +21,15 @@ def home_page(request):
                 lines = (line.strip() for line in f)
                 for line in lines:
                     lista=line.split(',')
+            costgolmi = request.POST.get('item_cost', '')
+            print(costgolmi)
+            if not costgolmi == '':# if the user entered a cost...
+                cost = Decimal(costgolmi)
+                calcfba_minus_cost = Decimal(lista[-3]) - cost
+                precentage_prof=calcfba_minus_cost/cost
+                lista.append(cost)
+                lista.append(calcfba_minus_cost)
+                lista.append("%.2f" % precentage_prof)
 #with open('./load_db_with.txt','r') as f:
 #    lines = (line.strip() for line in f)
 #    for line in lines:

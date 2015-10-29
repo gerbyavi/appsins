@@ -4,6 +4,8 @@
     <form method="POST">
     <!--note - must use form-->
         <input name="item_text" id="id_new_item" placeholder="Enter an ASIN" />
+        <input name="item_cost" id="id_cost" placeholder="our cost" />
+        <input type="submit" name = "main_submit_button" value="Daber Elay"/>
         {% csrf_token %}
     <!-- note - the post request approved by the site-->
     </form>
