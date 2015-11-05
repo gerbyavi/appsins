@@ -23,8 +23,21 @@ def home_page(request):
                     lista=line.split(',')
             costgolmi = request.POST.get('item_cost', '')
             print(costgolmi)
+            cost = Decimal(costgolmi)
+            print(request.POST.get('dropboxcomission', 'BLABLA'))
+            if not request.POST.get('dropboxcomission', None) == None:
+                if not request.POST.get('dropboxcomission') == 'No comission':
+                    print('There is a comission')
+                    cost = cost * (Decimal(request.POST.get('dropboxcomission'))+ Decimal(1))
+                    print(str(cost))
+            if not request.POST.get('checkbox1', None) == None:
+                print('FC Checked')
+                cost = cost +3
+            if not request.POST.get('checkbox2', None) == None:
+                print('Pay For Labels Checked')
+                cost = cost + Decimal(0.25)
             if not costgolmi == '':# if the user entered a cost...
-                cost = Decimal(costgolmi)
+#                cost = Decimal(costgolmi)
                 calcfba_minus_cost = Decimal(lista[-3]) - cost
                 precentage_prof=calcfba_minus_cost/cost
                 lista.append(cost)

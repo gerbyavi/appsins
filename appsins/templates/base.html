@@ -1,3 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ASINS</title>
+<!--    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/font_awesome/fonts/fontawesome-webfont.ttf" rel="stylesheet">
+
+<!--font-size:12pt;-->
+<!--font-family:FontAwesome;-->
+<!--color:#23238e;-->
+<!--font-family:'Glyphicons Halflings';-->
+<STYLE type="text/css">
+   body
+   {
+font-weight:bold;
+color:#23238e;
+   }
+</STYLE>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="text-center">
+                <h1>ASINS</h1>
+                <form method="POST">
+                <input name="item_text" id="id_new_item" placeholder="Enter an ASIN" />
+                <input name="item_cost" id="id_cost" placeholder="our cost" />
+                <input type="submit" name = "main_submit_button" value="Daber Elay"/>
+                <div class="row">
+                <input type="checkbox" id="cbox1" name = "checkbox1" value="FC"> <label for="cbox1">FC</label>
+                <input type="checkbox" id="cbox2" name = "checkbox2" value="labels"/><label for="cbox2">Pay For Labels</label>
+                <div class="row">
+<select name = "dropboxcomission">
+  <option name = "dropboxcomission" value="No comission">No comission</option>
+  <option name = "dropboxcomission" value="0.1">10%</option>
+  <option name = "dropboxcomission" value="0.2">20%</option>
+  <option name = "dropboxcomission" value="0.3">30%</option>
+</select>
+                </div>
+                    {% csrf_token %}
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% comment %}{
 <body>
     <title>ASINS</title>
     <h1>ASINS</h1>
@@ -11,4 +65,21 @@
     </form>
     {% block css %}
     {% endblock %}
+</body>
+{% endcomment %}
+
+    <div class="row">
+        <div class="col-md-18 col-md-offset-3">
+    <div class="text-center">
+            {% block css %}
+            {% endblock %}
+        </div>
+    </div>
+    </div>
+
+</div>
+{% comment %}{
+<script src="/static/bootstrap/js/jquery.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+{% endcomment %}
 </body>

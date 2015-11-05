@@ -37,7 +37,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+#    'django.contrib.static_precompiler'
+#    'static-precompiler',
     'appsins',
+    'awesome_bootstrap',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,3 +104,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#STATICFILES_DIRS = [os.path.join(os.path.dirname(__file__),'static')]
+
+#STATIC_ROOT = ['/static/bootstrap/css/bootstrap.min.css/']
+STATIC_ROOT = ['/static/bootstrap/']
