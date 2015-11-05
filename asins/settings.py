@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from sys import path
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,6 +25,7 @@ SECRET_KEY = '70pq+-=upbxe+1$orre=akk-95^ob+x!qrq$7zhs6@v@e*q4&j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -104,8 +106,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = (
+    os.path.abspath(os.path.join(BASE_DIR, '../static/'))
+)
 
-#STATICFILES_DIRS = [os.path.join(os.path.dirname(__file__),'static')]
+
+#STATICFILES_DIRS = [os.path.join(os.path.dirname(__file__),'/static')]
 
 #STATIC_ROOT = ['/static/bootstrap/css/bootstrap.min.css/']
-STATIC_ROOT = ['/static/bootstrap/']
+#STATIC_ROOT = ['/static/bootstrap/']
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, "static"),
+#    '/static/bootstrap/',
+#)

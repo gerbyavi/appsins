@@ -18,7 +18,10 @@ from django.contrib import admin
 
 from appsins import views
 
+admin.autodiscover()
+
 urlpatterns = [
-    #url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
+#    url(r'^admin/', views.home_page, name='base'),
     url(r'^$', views.home_page, name='base'),
 ]
