@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from decimal import *
+from appsins.models import Item
+from django.utils import timezone
 
 # Create your views here.
 
@@ -24,7 +26,11 @@ def home_page(request):
             costgolmi = request.POST.get('item_cost', '')
             print(costgolmi)
             cost = Decimal(costgolmi)
-            print(request.POST.get('dropboxcomission', 'BLABLA'))
+            amazonsellsflag = lista[-1]
+            print('LISTA:' + str(lista[-1]))
+            lista.pop(-1)
+            
+            #print(request.POST.get('dropboxcomission', 'BLABLA'))
             if not request.POST.get('dropboxcomission', None) == None:
                 if not request.POST.get('dropboxcomission') == 'No comission':
                     print('There is a comission')
@@ -38,6 +44,7 @@ def home_page(request):
                 cost = cost + Decimal(0.25)
             if not costgolmi == '':# if the user entered a cost...
 #                cost = Decimal(costgolmi)
+                print(lista[-3])
                 calcfba_minus_cost = Decimal(lista[-3]) - cost
                 precentage_prof=calcfba_minus_cost/cost
                 lista.append(cost)
@@ -47,12 +54,21 @@ def home_page(request):
 #    lines = (line.strip() for line in f)
 #    for line in lines:
 #        print(line)
+    print('COST' + str(cost))
+    if lista[4] == 0 and not amazonsellsflag:# check if someone fulfills
+        noonefulfills = 1
+    else:
+        noonefulfills = 0
     if len(lista) == 0:
         return render(request, 'base.html', {
         'new_item_text': request.POST.get('item_text', ''), ### catching the post from the request by it's input name="item_text" - not value !!!! 
         })
     else:
+        item1 = Item(datt=timezone.now(),asin=lista[0],rank=lista[1],name=lista[2],cmpt=lista[3],nfl=lista[4],calc=lista[5],minprice=lista[6],minpriceful=lista[7],cost=cost,clcminuscost=calcfba_minus_cost,precentprof=precentage_prof)
+        item1.save()
         return render(request, 'response.html', {
         #'new_item_text': request.POST.get('item_text', ''), ### catching the post from the request by it's input name="item_text" - not value !!!!·
             'new_item_text': lista, ### catching the post from the request by it's input name="item_text" - not value !!!!·
+            'amazonsellsflag':amazonsellsflag,
+            'noonefulfills':noonefulfills,
         })

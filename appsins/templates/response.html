@@ -48,5 +48,15 @@
   {% endfor %}
   </tr>
 </table>
+{% if amazonsellsflag == '1' %} 
+    <br> 
+    <p>AMAZON SELLS</p>
+{% else %} 
+    <p>AMAZON DOES NOT SELL</p>
+{% endif %} 
+{% if noonefulfills == '1' %} 
+    <br> 
+    <p>No One Fulfills</p>
+{% endif %} 
 </body>
 {% endblock %}
